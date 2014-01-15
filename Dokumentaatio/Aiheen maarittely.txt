@@ -1,0 +1,9 @@
+Toteutetaan miinaharava- peli. Pelin tarkoituksena on "haravoida" pelialusta j‰tt‰en pelk‰st‰‰n miinat alustalle.
+Jos pelaaja astuu miinaan, peli p‰‰ttyy. Pelaaja voittaa pelin, jos h‰n onnistuu tavoitteessaan.
+
+Aihe: Minesweeper
+
+K‰ytt‰j‰t: Pelaaja
+
+K‰ytt‰j‰n toiminnot: Pelaaja voi "haravoida" pelilautaa ja merkata oletettuja miinojen paikkoja.
+	              Peli p‰‰ttyy, kun vain miinat ovat j‰ljell‰ kent‰ll‰.
