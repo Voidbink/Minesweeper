@@ -1,0 +1,3 @@
+Tunteja kulunut:
+
+15.1.2014 = 1h (Gitin käyttöönotto ja dokumentoinnin aloitus)
