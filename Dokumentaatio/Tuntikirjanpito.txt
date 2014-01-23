@@ -1,3 +1,5 @@
 Tunteja kulunut:
 
 15.1.2014 = 1h (Gitin käyttöönotto ja dokumentoinnin aloitus)
+22.1.2014 = 3h (Ohjelmointia: Projektin käynnistys.Tärkeimipien luokkien luonti ja miinaharavan logiikan kartoitus)
+23.1.2014 = 4h (Ohjelmointia: Koodin siivousta, logiikan hionta ja testien tekeminen. Lisäksi Pit- raportin generointia ja määrittelyvaiheen luokkakaavion teko)
