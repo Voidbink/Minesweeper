@@ -1,14 +1,13 @@
 package minesweeper.minesweeper;
 import minesweeper.minesweeper.logiikka.*;
 import java.util.*;
+import minesweeper.minesweeper.gui.*;
 
 public class App {
     public static void main( String[] args ){
-        MaapalaRekisteri rekisteri = new MaapalaRekisteri(20, 40);
-        rekisteri.luoMaapalat();
-        rekisteri.alustaMiinat();
-        rekisteri.asetaMaapalojenArvot();
-        rekisteri.tulostaMaapalat();
+        Menu menu = new Menu();
+        
+        menu.run();
         
         
     }

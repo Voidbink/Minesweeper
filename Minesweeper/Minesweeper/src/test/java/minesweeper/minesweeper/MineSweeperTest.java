@@ -175,4 +175,29 @@ public class MineSweeperTest {
             }
         }
     }
+    @Test
+    public void palaOnTyhjaAluksi(){
+        MaapalaRekisteri rekisteri = new MaapalaRekisteri(5, 5);
+        rekisteri.luoMaapalat();
+        
+        ArrayList<Maapala> maapalat = rekisteri.getMaapalat();
+        
+        for (Maapala maapala : maapalat) {
+            assertTrue(maapala.onkoArvoNolla());
+        }
+    }
+    @Test
+    public void kunKaikkiMiinojaMikaanEiOleTyhja(){
+        MaapalaRekisteri rekisteri = new MaapalaRekisteri(5, 5);
+        rekisteri.luoMaapalat();
+        
+        ArrayList<Maapala> maapalat = rekisteri.getMaapalat();
+        
+        for (Maapala maapala : maapalat) {
+            maapala.muutaMiinaksi();
+        }
+        for (Maapala maapala : maapalat) {
+            assertFalse(maapala.onkoArvoNolla());
+        }
+    }
 }
