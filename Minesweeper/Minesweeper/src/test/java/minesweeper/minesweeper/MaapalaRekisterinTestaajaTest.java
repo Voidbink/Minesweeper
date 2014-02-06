@@ -18,107 +18,65 @@ import static org.junit.Assert.*;
  *
  * @author User
  */
-public class MineSweeperTest {
-    
-    public MineSweeperTest() {
+public class MaapalaRekisterinTestaajaTest {
+
+    public MaapalaRekisterinTestaajaTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
+
     @Test
-    public void oikeaMaaraMaapaloja(){
+    public void oikeaMaaraMaapaloja() {
         MaapalaRekisteri rekisteri = new MaapalaRekisteri(10, 10);
         rekisteri.luoMaapalat();
-        
+
         ArrayList<Maapala> maapalat = rekisteri.getMaapalat();
         assertTrue(maapalat.size() == 100);
     }
-    
+
     @Test
-    public void oikeaMaaraPaloja2(){
+    public void oikeaMaaraPaloja2() {
         MaapalaRekisteri rekisteri = new MaapalaRekisteri(20, 10);
         rekisteri.luoMaapalat();
-        
+
         ArrayList<Maapala> maapalat = rekisteri.getMaapalat();
         assertTrue(maapalat.size() == 400);
     }
+
     @Test
-    public void oikeaMaaraMiinoja(){
-        MaapalaRekisteri rekisteri = new MaapalaRekisteri(20, 10);
-        rekisteri.luoMaapalat();
-        rekisteri.alustaMiinat();
-        
-        ArrayList<Maapala> miinat = rekisteri.getMiinat();
-        assertTrue(miinat.size() == 10);
-    }
-    @Test
-    public void oikeaMaaraMiinoja2(){
-        MaapalaRekisteri rekisteri = new MaapalaRekisteri(10, 15);
-        rekisteri.luoMaapalat();
-        rekisteri.alustaMiinat();
-        
-        ArrayList<Maapala> miinat = rekisteri.getMiinat();
-        assertTrue(miinat.size() == 15);
-    }
-    @Test
-    public void miinoillaOikeaArvo(){
-        MaapalaRekisteri rekisteri = new MaapalaRekisteri(20, 20);
-        rekisteri.luoMaapalat();
-        rekisteri.alustaMiinat();
-        
-        ArrayList<Maapala> maapalat = rekisteri.getMaapalat();
-        for (Maapala maapala : maapalat) {
-            if(maapala.onkoMiina()){
-                assertTrue(maapala.getArvo() == -1);
-            }
-        }
-        
-    }
-    @Test
-    public void miinoillaOikeaArvo2(){
+    public void maaPaloillaOikeaArvoAlussa() {
         MaapalaRekisteri rekisteri = new MaapalaRekisteri(5, 5);
         rekisteri.luoMaapalat();
-        rekisteri.alustaMiinat();
-        
+
         ArrayList<Maapala> maapalat = rekisteri.getMaapalat();
-        for (Maapala maapala : maapalat) {
-            if(maapala.onkoMiina()){
-                assertTrue(maapala.getArvo() == -1);
-            }
-        }
-    }
-    @Test
-    public void maaPaloillaOikeaArvoAlussa(){
-        MaapalaRekisteri rekisteri = new MaapalaRekisteri(5, 5);
-        rekisteri.luoMaapalat();
-        
-        ArrayList<Maapala> maapalat = rekisteri.getMaapalat();
-        
+
         for (Maapala maapala : maapalat) {
             assertTrue(maapala.getArvo() == 0);
         }
-        
+
     }
+
     @Test
-    public void maaPalojenArvoKasvaaYhdella(){
+    public void maaPalojenArvoKasvaaYhdella() {
         MaapalaRekisteri rekisteri = new MaapalaRekisteri(5, 5);
         rekisteri.luoMaapalat();
-        
+
         ArrayList<Maapala> maapalat = rekisteri.getMaapalat();
-        
+
         for (Maapala maapala : maapalat) {
             maapala.kasvataArvoa();
         }
@@ -126,13 +84,14 @@ public class MineSweeperTest {
             assertTrue(maapala.getArvo() == 1);
         }
     }
+
     @Test
-    public void maaPalojenArvoKasvaaKahdella(){
+    public void maaPalojenArvoKasvaaKahdella() {
         MaapalaRekisteri rekisteri = new MaapalaRekisteri(5, 5);
         rekisteri.luoMaapalat();
-        
+
         ArrayList<Maapala> maapalat = rekisteri.getMaapalat();
-        
+
         for (Maapala maapala : maapalat) {
             maapala.kasvataArvoa();
             maapala.kasvataArvoa();
@@ -141,13 +100,14 @@ public class MineSweeperTest {
             assertTrue(maapala.getArvo() == 2);
         }
     }
+
     @Test
-    public void kaikkiMuuttuvatMiinoiksi(){
+    public void kaikkiMuuttuvatMiinoiksi() {
         MaapalaRekisteri rekisteri = new MaapalaRekisteri(5, 5);
         rekisteri.luoMaapalat();
-        
+
         ArrayList<Maapala> maapalat = rekisteri.getMaapalat();
-        
+
         for (Maapala maapala : maapalat) {
             maapala.muutaMiinaksi();
         }
@@ -155,44 +115,47 @@ public class MineSweeperTest {
             assertTrue(maapala.getArvo() == -1);
         }
     }
+
     @Test
-    public void palojenArvotKasvavatOikeinJosMiinaKeskella(){
+    public void palojenArvotKasvavatOikeinJosMiinaKeskella() {
         MaapalaRekisteri rekisteri = new MaapalaRekisteri(3, 1);
         rekisteri.luoMaapalat();
-        
+
         ArrayList<Maapala> maapalat = rekisteri.getMaapalat();
-        
+
         for (Maapala maapala : maapalat) {
-            if(maapala.getX() == 1 && maapala.getY() == 1){
+            if (maapala.getX() == 1 && maapala.getY() == 1) {
                 maapala.muutaMiinaksi();
             }
         }
         rekisteri.kasvataMaapalojenArvojaJosMiinanVieressa(1, 1);
-        
+
         for (Maapala maapala : maapalat) {
-            if(!maapala.onkoMiina()){
+            if (!maapala.onkoMiina()) {
                 assertTrue(maapala.getArvo() == 1);
             }
         }
     }
+
     @Test
-    public void palaOnTyhjaAluksi(){
+    public void palaOnTyhjaAluksi() {
         MaapalaRekisteri rekisteri = new MaapalaRekisteri(5, 5);
         rekisteri.luoMaapalat();
-        
+
         ArrayList<Maapala> maapalat = rekisteri.getMaapalat();
-        
+
         for (Maapala maapala : maapalat) {
             assertTrue(maapala.onkoArvoNolla());
         }
     }
+
     @Test
-    public void kunKaikkiMiinojaMikaanEiOleTyhja(){
+    public void kunKaikkiMiinojaMikaanEiOleTyhja() {
         MaapalaRekisteri rekisteri = new MaapalaRekisteri(5, 5);
         rekisteri.luoMaapalat();
-        
+
         ArrayList<Maapala> maapalat = rekisteri.getMaapalat();
-        
+
         for (Maapala maapala : maapalat) {
             maapala.muutaMiinaksi();
         }

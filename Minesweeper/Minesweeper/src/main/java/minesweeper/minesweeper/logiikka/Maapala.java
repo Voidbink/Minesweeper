@@ -1,5 +1,11 @@
 package minesweeper.minesweeper.logiikka;
 
+/**
+ * Tämä luokka edustaa maapaloja, jotka luovat pelialustan.
+ * Maapalalle voi asettaa arvon, hakea arvon, tai hakea maapalan koordinaatit.
+ *
+ * @author Mikael Parvamo
+ */
 public class Maapala {
 
     private int x;
@@ -36,10 +42,19 @@ public class Maapala {
         this.arvo++;
     }
 
+    /**
+     * Tämä metodi muuttaa arvon -1:ksi eli "miinaksi"
+     */
     public void muutaMiinaksi() {
         this.arvo = -1;
     }
 
+    /**
+     * Tämä metodi palauttaa arvon true, jos maapala on miina(arvo = -1) ja
+     * muuten false
+     *
+     * @return
+     */
     public boolean onkoMiina() {
         if (this.arvo == -1) {
             return true;
@@ -47,6 +62,10 @@ public class Maapala {
         return false;
     }
 
+    /**
+     * Jos maapala ei ole miina, kasvatetaan maapalan arvoa yhdellä. Kutsu
+     * metodiin tulee vain maapaloille, jotka ovat miinan vieressä.
+     */
     public void kasvataArvoaJosEiMiina() {
         if (!onkoMiina()) {
             this.kasvataArvoa();
@@ -54,6 +73,12 @@ public class Maapala {
         }
     }
 
+    /**
+     * Tämä metodi tarkastaa, onko maapalan arvo 0 (maapalan vieressä ei ole
+     * miinaa). Jos näin on, palautetaan true ja muuten false.
+     *
+     * @return true / false
+     */
     public boolean onkoArvoNolla() {
         if (this.arvo == 0) {
             return true;

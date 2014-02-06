@@ -1,6 +1,13 @@
 
 package minesweeper.minesweeper.gui;
 
+/**
+ * Tämä luokka on Minesweeperin menu.
+ * Menusta pelaaja voi valita joko easyn, mediumin tai hardin pelin vaikeustasoksi.
+ * 
+ * @author Mikael Parvamo
+ */
+
 import minesweeper.minesweeper.logiikka.*;
 import minesweeper.minesweeper.gui.*;
 import javax.swing.*;
@@ -27,7 +34,11 @@ public class Menu {
         frame.setVisible(true);
         
     }
-    
+    /**
+     * Tämä metodi luo menun komponentit ja asettaa nillee actionListenerin, joka
+     * kuuntelee menuun tehtyjä klikkauksia.
+     * @param container 
+     */
     private void luoKomponentit(Container container){
         GridLayout layout = new GridLayout(3, 1, 20, 50);
         container.setLayout(layout);

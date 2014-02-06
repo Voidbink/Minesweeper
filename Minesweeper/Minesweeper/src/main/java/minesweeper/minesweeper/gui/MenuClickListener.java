@@ -1,9 +1,15 @@
 package minesweeper.minesweeper.gui;
 
+/**
+ * Tämä luokka kuuntelee Menun klikkauksia.
+ * 
+ * @author Mikael Parvamo
+ */
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import minesweeper.minesweeper.gui.MinesweeperGame;
+import minesweeper.minesweeper.gui.MinesweeperGameGUI;
 
 public class MenuClickListener implements ActionListener{
     private JButton easy;
@@ -15,17 +21,24 @@ public class MenuClickListener implements ActionListener{
         this.medium = medium;
         this.hard = hard;
     }
-
+    
+    /**
+     * Metodi saa parametrina klikkauksen. Metodin tehtävänä on tarkistaa
+     * klikkauksen tehnyt komponentti ja käynnistää sen perusteella joko easy, 
+     * medium tai hard vaikeustaso.
+     * 
+     * @param e (tehty klikkaus)
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == easy){
-            MinesweeperGame peli = new MinesweeperGame(20, 20);
+            MinesweeperGameGUI peli = new MinesweeperGameGUI(20, 30);
             peli.run();
         }else if(e.getSource() == medium){
-            MinesweeperGame peli = new MinesweeperGame(20, 40);
+            MinesweeperGameGUI peli = new MinesweeperGameGUI(20, 50);
             peli.run();
         }else{
-            MinesweeperGame peli = new MinesweeperGame(20, 60);
+            MinesweeperGameGUI peli = new MinesweeperGameGUI(20, 70);
             peli.run();
         }
     }
