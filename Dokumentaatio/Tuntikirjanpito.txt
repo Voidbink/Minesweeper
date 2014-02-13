@@ -8,3 +8,5 @@ Tunteja kulunut:
 5.2.2014 = 3h ( Ohjelmointia: Käyttöliittymän ohjelmointia eteenpäin.)
 6.2.2014 = 5h ( Ohjelmointia: Käyttöliittymän ohjelmointia. Testien tekemistä, Pit-raportin generointi, sekvenssikaavioiden teko, JavaDOCin pähkäilyä (En saa 
 	        JavaDOC:n generointivaihtoehtoa toimimaan)
+12.2.2014 = 2h (JavaDOC:n jatkamista, pientä ohjelmointia)
+13.2.2014 = 1h (Sekvenssikaavion teko, ohjelmoinnin jatkoa)
