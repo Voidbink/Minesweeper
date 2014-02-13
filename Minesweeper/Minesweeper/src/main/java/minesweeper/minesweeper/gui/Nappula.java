@@ -47,7 +47,7 @@ public class Nappula extends JButton {
     public void avaa() {
         this.avattu = true;
     }
-
+    
     public boolean onkoAvattu() {
         return this.avattu;
     }

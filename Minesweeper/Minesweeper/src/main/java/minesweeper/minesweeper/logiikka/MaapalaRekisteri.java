@@ -39,20 +39,6 @@ public class MaapalaRekisteri {
     }
 
     /**
-     * Tämä metodi tulostaa jokaisen maapalan
-     */
-    public void tulostaMaapalat() {
-        int k = 0;
-        for (int i = 0; i < koko; i++) {
-            for (int j = 0; j < koko; j++) {
-                System.out.print(maapalat.get(k));
-                k++;
-            }
-            System.out.println("");
-        }
-    }
-
-    /**
      *Tämä metodi alustaa miinat.
      * Metodi kutsuu miinojenAlustajan metodia alustaMiinat ja saa listan maapaloista
      * jotka muutetaan miinoiksi.

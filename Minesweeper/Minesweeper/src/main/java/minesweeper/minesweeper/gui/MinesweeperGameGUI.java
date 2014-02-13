@@ -7,12 +7,17 @@ package minesweeper.minesweeper.gui;
  * @author Mikael Parvamo
  */
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.LayoutManager;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.WindowConstants;
 import minesweeper.minesweeper.logiikka.Maapala;
 import minesweeper.minesweeper.logiikka.MaapalaRekisteri;
@@ -40,13 +45,11 @@ public class MinesweeperGameGUI {
         maapalaRekisteri.asetaMaapalojenArvot();
 
         frame = new JFrame("Minesweeper");
-        int leveys = 1000;
-        int korkeus = 1000;
+        int leveys = 900;
+        int korkeus = 900;
 
         frame.setPreferredSize(new Dimension(leveys, korkeus));
-
         luoKomponentit(frame.getContentPane());
-
         frame.pack();
         frame.setVisible(true);
     }
@@ -61,7 +64,10 @@ public class MinesweeperGameGUI {
     public void luoKomponentit(Container container) {
         GridLayout layout = new GridLayout(koko, koko);
         container.setLayout(layout);
-
+        
+        JLabel score = new JLabel("Time: ");
+        score.setLayout(layout);
+        
         for (int i = 0; i < koko; i++) {
             for (int j = 0; j < koko; j++) {
                 Nappula nappula = new Nappula(j, i);
@@ -78,10 +84,10 @@ public class MinesweeperGameGUI {
         GameClickListener kuuntelija = new GameClickListener(nappulat);
         for (Nappula nappula : nappulat) {
             nappula.addMouseListener(kuuntelija);
-        }
+        }       
         for (Nappula nappula : nappulat) {
             container.add(nappula);
         }
-
+        
     }
 }
