@@ -21,9 +21,10 @@ import javax.swing.JLabel;
 import javax.swing.WindowConstants;
 import minesweeper.minesweeper.logiikka.Maapala;
 import minesweeper.minesweeper.logiikka.MaapalaRekisteri;
+import minesweeper.minesweeper.logiikka.Peli;
 
 public class MinesweeperGameGUI {
-
+    private Peli peli;
     private int miinoja;
     private int koko;
     private JFrame frame;
@@ -35,8 +36,9 @@ public class MinesweeperGameGUI {
         this.koko = koko;
         this.miinoja = miinoja;
         this.maapalaRekisteri = new MaapalaRekisteri(koko, miinoja);
-        this.nappulat = new ArrayList<Nappula>();
+        this.nappulat = new ArrayList<>();
         this.maapalat = maapalaRekisteri.getMaapalat();
+        this.peli = new Peli(nappulat);
     }
 
     public void run() {
@@ -81,7 +83,7 @@ public class MinesweeperGameGUI {
                 }
             }
         }
-        GameClickListener kuuntelija = new GameClickListener(nappulat);
+        GameClickListener kuuntelija = new GameClickListener(nappulat, peli);
         for (Nappula nappula : nappulat) {
             nappula.addMouseListener(kuuntelija);
         }       

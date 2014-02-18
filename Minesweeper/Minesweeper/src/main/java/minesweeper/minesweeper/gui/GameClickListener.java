@@ -17,19 +17,19 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import minesweeper.minesweeper.logiikka.MaapalaRekisteri;
+import minesweeper.minesweeper.logiikka.Peli;
 
 public class GameClickListener implements MouseListener {
-
+    private Peli peli;
     private boolean voitto;
     private boolean miinaAvattu;
-    private ArrayList<Nappula> viereisetNappulatNollalla;
     private ArrayList<Nappula> nappulat;
 
-    public GameClickListener(ArrayList<Nappula> nappulat) {
+    public GameClickListener(ArrayList<Nappula> nappulat, Peli peli) {
         this.nappulat = nappulat;
-        this.viereisetNappulatNollalla = new ArrayList<>();
         this.miinaAvattu = false;
         this.voitto = false;
+        this.peli = peli;
     }
 
     /**
@@ -96,7 +96,7 @@ public class GameClickListener implements MouseListener {
      */
     public void avaaArvollaNolla(Nappula nappula, MouseEvent e) {
         for (Nappula nappula1 : nappulat) {
-            if (onkoVieressa(nappula, nappula1) && !nappula1.onkoAvattu() && nappula1.getText().equals("")) {
+            if (nappula.onkoVieressa(nappula1) && !nappula1.onkoAvattu() && nappula1.getText().equals("")) {
                 nappula1.avaa();
                 if (nappula1.getArvo() > 0) {
                     nappula1.setText("" + nappula1.getArvo());
@@ -105,7 +105,8 @@ public class GameClickListener implements MouseListener {
                 enhancedMouseClicked(e, nappula1);
             }
         }
-        voittikoPelaaja();
+        peli.voittikoPelaaja();
+        this.voitto = peli.getVoitto();
     }
 
     /**
@@ -118,7 +119,8 @@ public class GameClickListener implements MouseListener {
         nappula.avaa();
         nappula.setText("" + nappula.getArvo());
         nappula.setEnabled(false);
-        voittikoPelaaja();
+        peli.voittikoPelaaja();
+        this.voitto = peli.getVoitto();
     }
 
     /**
@@ -146,50 +148,8 @@ public class GameClickListener implements MouseListener {
                 nappula1.setEnabled(false);
             }
         }
+        peli.miinaAvattu();
     }
-
-    /**
-     * Tämä metodi tarkastaa, onko pelaaja voittanut. Metodi tarkastaa onko
-     * kaikkimuut nappulat kuin miinat avattu. Jos näin on, metodi asettaa
-     * muuttujalle voitto arvon true, asettaa nappuloille Enabled arvon false
-     * ja muuttaa nappuloiden taustavärin vihreäksi. Muuten ei tapahdu mitään.
-     */
-    public void voittikoPelaaja() {
-        int suljettuja = 0;
-        int miinoja = 0;
-
-        for (Nappula nappula : nappulat) {
-            if (!nappula.onkoAvattu()) {
-                suljettuja++;
-            }
-            if (nappula.getArvo() == -1) {
-                miinoja++;
-            }
-        }
-        if (miinoja == suljettuja) {
-            voitto = true;
-
-            for (Nappula nappula : nappulat) {
-                nappula.setEnabled(false);
-                nappula.setBackground(Color.GREEN);
-            }
-        }
-    }
-
-    /**
-     * Tämä metodi tarkistaa onko kutsun tehnyt nappula toisen nappulan
-     * vieressä. Jos ne ovat vierekkäin, palautetaan true, muuten false.
-     *
-     * @param nappula1(klikkaava nappula), nappula2 (verrattava nappula)
-     * @return true / false
-     */
-    public boolean onkoVieressa(Nappula nappula1, Nappula nappula2) {
-        if (Math.abs(nappula1.getXkoordinaatti() - nappula2.getXkoordinaatti()) <= 1 && Math.abs(nappula1.getYkoordinaatti() - nappula2.getYkoordinaatti()) <= 1) {
-            return true;
-        }
-        return false;
-    }
-
     @Override
     public void mousePressed(MouseEvent e) {
     }
