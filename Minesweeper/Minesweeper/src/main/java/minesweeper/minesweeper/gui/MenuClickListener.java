@@ -35,10 +35,10 @@ public class MenuClickListener implements ActionListener{
             MinesweeperGameGUI peli = new MinesweeperGameGUI(20, 30);
             peli.run();
         }else if(e.getSource() == medium){
-            MinesweeperGameGUI peli = new MinesweeperGameGUI(20, 50);
+            MinesweeperGameGUI peli = new MinesweeperGameGUI(20, 45);
             peli.run();
         }else{
-            MinesweeperGameGUI peli = new MinesweeperGameGUI(20, 70);
+            MinesweeperGameGUI peli = new MinesweeperGameGUI(20, 60);
             peli.run();
         }
     }

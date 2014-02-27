@@ -1,0 +1,32 @@
+MINESWEEPERIN RAKENNE
+
+Minesweeper- ohjelma koostuu luokkakaaviossa määritellyistä luokista. Nämä luokat voidaan jakaa 
+kahteen eri ryhmään niiden ominaisuuksien ja tehtävien perusteella.
+
+
+Ensimmäinen ryhmä, pelin logiikka, pitää sisällään nimensä mukaisesti pelin logiikan kannalta tärkeät 
+luokat, joita ovat: Maapala, MaapalaRekisteri, MiinojenAlustaja ja Peli.
+
+* MaapalaRekisteri luo maapalat, alustaa miinat ja pitää kirjaa peliin kuuluvista maapaloista. 
+* Maapala- luokka puolestaan pitää kirjaa yksittäisistä maapaloista ja niiden attribuuteista. 
+* MiinojenAlustaja on MaapalaRekisteristä riippuva luokka, joka asettaa randomilla valituissa koordinaatissa 
+   sijaitseville maapaloille miinan.
+* Peli- luokan tehtäviin kuuluu tarkistaa, onko pelaaja voittanut tai hävinnyt. Peli luokka pitää myös kirjaa siitä, 
+   montako miinaa pelaajalla on vielä merkkaamatta.
+
+
+Toinen ryhmä eli käyttöliittymä, vastaa pelin ulkoasullisesta puolesta ja käytännössä itse pelin toimivuudesta. 
+Tähän ryhmään kuuluvat luokat:  Menu, MenuClickListener, MinesweeperGameGUI, Nappula ja GameClickListener.
+
+* Menu avaa menu- ikkunan, josta pelaaja voi valita vaikeustason. Vaikeustasoina pelissä ovat easy, medium ja hard. 
+   Kaikissa vaikeustasoissa "pelilaudan" koko on 20x20. Vaikeustasot eroavat toisistaan niissä ilmenevien miinojen perusteella. 
+   Easyssa on 30 miinaa, Mediumissa 45 miinaa ja Hardissa 60 miinaa. 
+* MenuClickListener "kuuntelee", minkä vaikeustason pelaaja valitsee ja luo tämän valinnan perusteella uuden pelin, jossa on 
+   pelaajan valitseman vaikeus tason verran miinoja.
+* MinesweeperGameGUI luo pelin komponentit, joita ovat mm. nappulat ja "Mines"- palkki. Tämä luokka luo siis pelin
+   varsinaisen käyttöliittymän.
+* Nappula on JButtonin perivä luokka, jolla on omana erikoisuutenaan koordinaatit ja ns. "maapalaArvo. " 
+   Nämä kummatkin määräytyvät aikaisemmin luotujen maapalojen mukaan. Jokainen nappula ja maapala, 
+   jotka sisältävät samat koordinaatit, sisältävät myös samat maapalaArvot. 
+* GameClickListener kuuntelee pelaajan tekemiä "pelikomentoja", joita ovat maapalan avaus ja maapalan merkkaus. 
+   Näiden komentojen perusteella tämä luokka ohjaa mm. nappula- olioita ja peli- oliota.

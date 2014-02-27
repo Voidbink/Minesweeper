@@ -1,0 +1,42 @@
+KÄYTTÖOHJEET
+
+Pelissä on kolme vaikeustasoa:
+
+|   VAIKEUSTASO   |   PELILAUDAN KOKO   |   MIINOJA   |
+
+|          EASY           |             20x20             |         30         |
+
+|       MEDIUM        |             20x20             |         45         |
+
+|          HARD          |             20x20             |         60         |
+
+
+Pelaajan toiminnot:
+Hiiren vasen klikkaus = Avaa maapala (Jos avattava maapala on miina, peli päättyy)
+Hiiren oikea klikkaus = Maapalojen merkkaus ( merkkaa "!", jos olet varma, että kyseessä 
+                                 on miina ja "?", jos et ole vielä täysin vakuuttunut.
+
+Maapalojen arvot:
+Maapaloilla on arvoja, jotka ovat "tyhjä", numero tai "*".
+
+Tyhjä: Maapalan välittömässä läheisyydessä ei ole miinaa.
+Numero: Maapalan välittömässä läheisyydessä on numeron osoittaman verran miinoja.
+Miina(*): Avattu maapala on miina ja peli päättyy karvaaseen tappioon.
+
+
+Maapalojen avaus:
+*Jos avattu maapala on tyhjä, avautuvat kaikki tämän maapalan ympärillä olevat maapalat ja niille tehdään samat
+  toimenpiteet kuin, jos ne olisi avattu käsin.
+
+*Jos avattu maapala on numero, avautuu ainoastaan avattu maapala
+
+*Jos avattu maapala on miina eli "*", peli päättyy ja kaikkien miinojen sijainnit paljastetaan.
+
+Pelin kulku:
+1. Käynnistä peli
+2. Valitse vaikeustaso klikkaamalla haluamaasi vaikeustasoa
+3. Avaa maapaloja hiiren vasemmalla klikkauksella / Merkkaa maapaloja hiiren oikealla klikkauksella
+
+VOITTO/HÄVIÖ:
+***Pelaaja voittaa, jos kaikki maapalat paitsi miinat on avattu***
+***Pelaaja häviää, jos avattu maapala on miina***

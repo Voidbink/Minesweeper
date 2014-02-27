@@ -12,12 +12,14 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import minesweeper.minesweeper.logiikka.Maapala;
 import minesweeper.minesweeper.logiikka.MaapalaRekisteri;
@@ -38,7 +40,7 @@ public class MinesweeperGameGUI {
         this.maapalaRekisteri = new MaapalaRekisteri(koko, miinoja);
         this.nappulat = new ArrayList<>();
         this.maapalat = maapalaRekisteri.getMaapalat();
-        this.peli = new Peli(nappulat);
+        this.peli = new Peli(nappulat, miinoja);
     }
 
     public void run() {
@@ -57,18 +59,20 @@ public class MinesweeperGameGUI {
     }
     
     /**
-     * Tämä matodi luo komponentit, joita peli käyttää.
+     * Tämä metodi luo komponentit, joita peli käyttää.
      * Metodi asettaa luomilleen nappuloille samassa koordinaatissa sijaitsevan
      * maapalan arvon ja lisää nappuloille MouseListenerin.
      * @param container 
      */
     
     public void luoKomponentit(Container container) {
-        GridLayout layout = new GridLayout(koko, koko);
+        BorderLayout layout = new BorderLayout();
         container.setLayout(layout);
         
-        JLabel score = new JLabel("Time: ");
-        score.setLayout(layout);
+        JLabel miinat = new JLabel("Mines: " + peli.getMiinat());
+        
+        JPanel mines = new JPanel(new GridLayout(1,1));
+        mines.add(miinat);
         
         for (int i = 0; i < koko; i++) {
             for (int j = 0; j < koko; j++) {
@@ -76,20 +80,22 @@ public class MinesweeperGameGUI {
                 nappulat.add(nappula);
             }
         }
+        JPanel nappuloita = new JPanel(new GridLayout(koko,koko));
+        
         for (Maapala maapala : maapalat) {
             for (Nappula nappula : nappulat) {
                 if (maapala.getX() == nappula.getXkoordinaatti() && maapala.getY() == nappula.getYkoordinaatti()) {
                     nappula.asetaMaaArvo(maapala.getArvo());
+                    nappuloita.add(nappula);
                 }
             }
         }
-        GameClickListener kuuntelija = new GameClickListener(nappulat, peli);
+        GameClickListener kuuntelija = new GameClickListener(nappulat, peli, miinat);
         for (Nappula nappula : nappulat) {
             nappula.addMouseListener(kuuntelija);
         }       
-        for (Nappula nappula : nappulat) {
-            container.add(nappula);
-        }
+        container.add(mines, BorderLayout.NORTH);
+        container.add(nappuloita, BorderLayout.CENTER);
         
     }
 }

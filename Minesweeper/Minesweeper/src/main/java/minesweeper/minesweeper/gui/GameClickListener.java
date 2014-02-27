@@ -16,20 +16,25 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import minesweeper.minesweeper.logiikka.MaapalaRekisteri;
 import minesweeper.minesweeper.logiikka.Peli;
 
 public class GameClickListener implements MouseListener {
+
     private Peli peli;
     private boolean voitto;
     private boolean miinaAvattu;
     private ArrayList<Nappula> nappulat;
+    private JLabel miinat;
 
-    public GameClickListener(ArrayList<Nappula> nappulat, Peli peli) {
+    public GameClickListener(ArrayList<Nappula> nappulat, Peli peli, JLabel miinat) {
         this.nappulat = nappulat;
         this.miinaAvattu = false;
         this.voitto = false;
         this.peli = peli;
+        this.miinat = miinat;
+
     }
 
     /**
@@ -65,7 +70,11 @@ public class GameClickListener implements MouseListener {
         } else if (voitto) {
         } else {
             if (e.getButton() == MouseEvent.BUTTON1) {
-                if (nappula.getArvo() == 0) {
+                if (nappula.getText().equals("!")) {
+                } else if (nappula.getArvo() == 0) {
+                    nappula.avaa();
+                    nappula.setText("");
+                    nappula.setEnabled(false);
                     avaaArvollaNolla(nappula, e);
                 } else if (nappula.getArvo() > 0) {
                     avaaArvollaNollaaSuurempi(nappula);
@@ -73,10 +82,17 @@ public class GameClickListener implements MouseListener {
                     avaaMiina(nappula);
                 }
             } else if (e.getButton() == MouseEvent.BUTTON3 || e.getButton() == MouseEvent.BUTTON2) {
-                if (nappula.getText().equals("")) {
+                if(nappula.onkoAvattu()){
+                    
+                }
+                else if (nappula.getText().equals("")) {
                     nappula.setText("!");
+                    peli.merkkaaMiina();
+                    miinat.setText("Mines: " + peli.getMiinat());
                 } else if (nappula.getText().equals("!")) {
                     nappula.setText("?");
+                    peli.poistaMerkkaus();
+                    miinat.setText("Mines: " + peli.getMiinat());
                 } else {
                     nappula.setText("");
                 }
@@ -107,6 +123,9 @@ public class GameClickListener implements MouseListener {
         }
         peli.voittikoPelaaja();
         this.voitto = peli.getVoitto();
+        if(voitto){
+            miinat.setText("Mines: " + 0);
+        }
     }
 
     /**
@@ -121,6 +140,9 @@ public class GameClickListener implements MouseListener {
         nappula.setEnabled(false);
         peli.voittikoPelaaja();
         this.voitto = peli.getVoitto();
+        if(voitto){
+            miinat.setText("Mines: " + 0);
+        }
     }
 
     /**
@@ -150,6 +172,7 @@ public class GameClickListener implements MouseListener {
         }
         peli.miinaAvattu();
     }
+
     @Override
     public void mousePressed(MouseEvent e) {
     }

@@ -21,30 +21,30 @@ import static org.junit.Assert.*;
  * @author User
  */
 public class PeliTest {
+
     private ArrayList<Nappula> nappulat;
     private MaapalaRekisteri maapalaRekisteri;
     private ArrayList<Maapala> maapalat;
-    
+
     public PeliTest() {
         this.nappulat = new ArrayList<>();
         this.maapalaRekisteri = new MaapalaRekisteri(2, 0);
-        
+
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
-        
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         maapalaRekisteri.luoMaapalat();
         maapalat = maapalaRekisteri.getMaapalat();
-        
+
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
                 Nappula nappula = new Nappula(j, i);
@@ -59,43 +59,82 @@ public class PeliTest {
             }
         }
     }
-    
+
     @After
     public void tearDown() {
     }
-    
+
     @Test
-    public void alussaHavioFalse(){
-        Peli peli = new Peli(nappulat);
+    public void alussaHavioFalse() {
+        Peli peli = new Peli(nappulat, 20);
         assertFalse(peli.getHavio());
     }
+
     @Test
-    public void alussaVoittoFalse(){
-        Peli peli = new Peli(nappulat);
+    public void alussaVoittoFalse() {
+        Peli peli = new Peli(nappulat, 20);
         assertFalse(peli.getVoitto());
-        
+
     }
+
     @Test
-    public void miinanAvattuaHavioTrue(){
-        Peli peli = new Peli(nappulat);
+    public void miinanAvattuaHavioTrue() {
+        Peli peli = new Peli(nappulat, 20);
         peli.miinaAvattu();
         assertTrue(peli.getHavio());
-        
+
     }
+
     @Test
-    public void voittaessaVoittoTrue(){
+    public void voittaessaVoittoTrue() {
         for (Nappula nappula : nappulat) {
             nappula.asetaMaaArvo(-1);
         }
-        
-        Peli peli = new Peli(nappulat);
+
+        Peli peli = new Peli(nappulat, 20);
         peli.voittikoPelaaja();
         assertTrue(peli.getVoitto());
-        
+
     }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+
+    @ Test
+    public void miinatVahenevatMerkatessa() {
+        Peli peli = new Peli(nappulat, 20);
+        peli.merkkaaMiina();
+        assertTrue(peli.getMiinat() == 19);
+    }
+
+    @Test
+    public void miinatVahenevatMerkatessa2() {
+        Peli peli = new Peli(nappulat, 20);
+        peli.merkkaaMiina();
+        peli.merkkaaMiina();
+        peli.merkkaaMiina();
+
+        assertTrue(peli.getMiinat() == 17);
+    }
+    
+    @Test
+    public void miinatKasvavatKunMerkkausPoistetaan(){
+        Peli peli = new Peli(nappulat,20);
+        peli.merkkaaMiina();
+        assertTrue(peli.getMiinat() == 19);
+        peli.poistaMerkkaus();
+        assertTrue(peli.getMiinat() == 20);
+    }
+    @Test
+    public void miinatKasvavatKunMerkkausPoistetaan2(){
+        Peli peli = new Peli(nappulat, 10);
+        peli.merkkaaMiina();
+        peli.merkkaaMiina();
+        peli.merkkaaMiina();
+        peli.poistaMerkkaus();
+        
+        assertTrue(peli.getMiinat() == 8);
+    }
+// TODO add test methods here.
+// The methods must be annotated with annotation @Test. For example:
+//
+// @Test
+// public void hello() {}
 }

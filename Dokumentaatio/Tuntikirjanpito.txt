@@ -10,3 +10,6 @@ Tunteja kulunut:
 	        JavaDOC:n generointivaihtoehtoa toimimaan)
 12.2.2014 = 2h (JavaDOC:n jatkamista, pientä ohjelmointia)
 13.2.2014 = 1h (Sekvenssikaavion teko, ohjelmoinnin jatkoa)
+20.2.2014 = 2h (Ohjelmointia, dokumenttien päivittelyä)
+26.2.2014 = 2h ( Ohjelmointia (JLabelin, joka pitää kirjaa miinojen määrästä, lisääminen käyttöliittymään)
+27.2.2014 = 4h ( Käyttöohjeiden teko, jar- tiedoston teko, ohjelman rakenteen avaus, dokumenttien päivittelyä)
